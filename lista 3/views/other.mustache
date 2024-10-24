@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{title}}</title>
+</head>
+<body>
+    <h1>{{title}}</h1>
+    <a href="/">Voltar para Página Inicial</a>
+    <form action="/invert" method="get">
+        <label for="text">Texto a inverter:</label>
+        <input type="text" id="text" name="text" required>
+        <button type="submit">Inverter</button>
+    </form>
+  <form action="/validate" method="post">
+    <label for="username">Usuário:</label>
+    <input type="text" id="username" name="username" required>
+    <label for="password">Senha:</label>
+    <input type="password" id="password" name="password" required>
+
+    <button type="submit">Validar</button>
+</form>
+
+</body>
+</html>
