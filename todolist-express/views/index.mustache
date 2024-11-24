@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Tarefas</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+    <h1>Bem-vindo, {{userName || 'Usuário'}}!</h1>
+    <form action="/salvauser" method="post">
+        <label for="userName">Digite seu nome:</label>
+        <input type="text" name="userName" required>
+        <button type="submit">Salvar Nome</button>
+    </form>
+    <a href="/tasks">Ir para as Tarefas</a>
+    <a href="/random">Gerar número aleatório</a>
+    <a href="/contador">Contador de Acessos</a>
+    <a href="/logout">Sair</a>
+</body>
+</html>
