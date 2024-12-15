@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JWT Token Demo</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+    .container {
+      max-width: 500px;
+      margin: auto;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    input, button {
+      width: 100%;
+      padding: 10px;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>JWT Token Demo</h1>
+    <button id="generateToken">Generate Token</button>
+    <p><strong>Generated Token:</strong></p>
+    <textarea id="tokenOutput" rows="4" readonly></textarea>
+
+    <h2>Decode Token</h2>
+    <input type="text" id="tokenInput" placeholder="Paste your token here">
+    <button id="decodeToken">Decode Token</button>
+    <p><strong>Decoded Message:</strong></p>
+    <textarea id="decodedMessage" rows="4" readonly></textarea>
+  </div>
+
+  <script>
+    const API_BASE_URL = 'http://localhost:3000';
+
+    document.getElementById('generateToken').addEventListener('click', async () => {
+      const response = await fetch(`${API_BASE_URL}/generate-token`);
+      const data = await response.json();
+      document.getElementById('tokenOutput').value = data.token;
+    });
+
+    document.getElementById('decodeToken').addEventListener('click', async () => {
+      const token = document.getElementById('tokenInput').value;
+      const response = await fetch(`${API_BASE_URL}/decode-token`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ token })
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        document.getElementById('decodedMessage').value = data.message;
+      } else {
+        const error = await response.json();
+        document.getElementById('decodedMessage').value = `Error: ${error.error}`;
+      }
+    });
+  </script>
+</body>
+</html>
